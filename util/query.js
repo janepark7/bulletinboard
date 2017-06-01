@@ -10,7 +10,6 @@ const config = {
 const pool = new pg.Pool(config);
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded());
 //	console.log(req.body)
 
 //	need res.render("page/bulletinboard", {id: req.params.bulletinboard})
@@ -30,14 +29,6 @@ pool.query("SELECT * FROM messages")
 		console.error("Unable to get messages db", err);
 	});
 
-app.get("/bulletinboard", function(req, res) {
-	res.render("bulletinboard", {
-		title: title
-		id: id
-		body: body
-	});
-});
-
-// module.exports = function(queryString, values, cb) {
-// 	return.pool.query(queryString, values, cb);
-// 	};
+module.exports = function(queryString, values, cb) {
+	return pool.query(queryString, values, cb);
+	};
