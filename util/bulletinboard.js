@@ -7,8 +7,12 @@ const Bulletin = {
 		});
 	},
 
-	add: function(messages) {
+	// catch(function(err) {
+	// 	console.error("Unable to get users from db", err);
+	// });
 
+	add: function(messages) {
+		console.log(messages);
 	},
 };
 

@@ -13,11 +13,16 @@ app.use(bodyParser.json());
 
 app.get("/", function(req, res) {
 //	res.send("Hi There!");
-	Bulletin.getAll(function(result) {
+	Bulletin.getAll(function(messages) {
+		// res.json(result);
 		res.render("board",{
-			messages: result.rows,
+			messages: messages
 		});
 	});
+});
+
+app.post("/", function(req, res) {
+	Bulletin.add(req.body.annoymous);
 });
 
 app.get("*", function (req, res) {

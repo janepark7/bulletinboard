@@ -4,12 +4,20 @@
 	</head>
 	<body>
 		<table>
-			<% for (let i = 0; i < board.length; i++); { %>
+			<% for (let i = 0; i < messages.length; i++) { %>
 				<tr>
-					<td><%= messages[i].name %> </td>
+					<td><%= messages[i].title %> </td>
+					<td><%= messages[i].body %> </td>
+					<td><%= messages[i].timestamp %> </td>
 				</tr>
 			<% } %>
 		</table>
+
+		<form method="post">
+			<input type="text" name="title" placeholder="title" />
+			<input type="text" name="body" placeholder="body"/>
+			<button>Add</button>
+		</form>
 	</body>
 
 </html>
