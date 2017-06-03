@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.get("/", function(req, res) {
 //	res.send("Hi There!");
 	Bulletin.getAll(function(messages) {
-		// res.json(result);
+		//  res.json(result);
 		res.render("board",{
 			messages: messages
 		});
@@ -22,7 +22,13 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-	Bulletin.add(req.body.annoymous);
+	Bulletin.add([req.body.title, req.body.body]).then(function(messages) {
+		res.send("saved");
+		res.json();
+		// res.render("board", {
+		// 	messages: messages
+		// });
+	});
 });
 
 app.get("*", function (req, res) {
@@ -30,6 +36,8 @@ app.get("*", function (req, res) {
 //	insert David Bowie 404 - Oh you pretty errors!
 });
 
-app.listen(3000, function() {
-	console.log("Your server is available at localhost:3000!");
+const port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+	console.log("Listening at http://localhost:" + port);
 });

@@ -6,9 +6,9 @@
 		<table>
 			<% for (let i = 0; i < messages.length; i++) { %>
 				<tr>
-					<td><%= messages[i].title %> </td>
-					<td><%= messages[i].body %> </td>
-					<td><%= messages[i].timestamp %> </td>
+				 <td><%= messages[i].title %> </td>
+				 <td><%= messages[i].body %> </td>
+				 <td><%= messages[i].created %> </td>
 				</tr>
 			<% } %>
 		</table>
@@ -16,7 +16,7 @@
 		<form method="post">
 			<input type="text" name="title" placeholder="title" />
 			<input type="text" name="body" placeholder="body"/>
-			<button>Add</button>
+			<button>Submit</button>
 		</form>
 	</body>
 
