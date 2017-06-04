@@ -25,12 +25,31 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-	Bulletin.add([req.body.title, req.body.body])
+	if(req.body.title && req.body.body){
+		res.send('correct');
+	}else{
+		res.send('No.');
+	}
+	if (Bulletin.add([req.body.title, req.body.body])
 		.then(function() {
 			renderBoard(res, "Saved " + req.body.title);
+		}))
+
+	}else{
+			.then(function() {
+				renderBoard(res, "Error ");
+			})
 		});
 });
 
+
+app.get("/form", function (req, res) {
+	res.render("form", {
+		title: req.body.title,
+		body: req.body.body,
+	});
+//	insert David Bowie 404 - Oh you pretty errors!
+});
 
 app.get("*", function (req, res) {
 	res.send('<img src="/css/images/bowie.jpg">');
