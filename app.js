@@ -11,25 +11,26 @@ app.use(express.static("assets"));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.get("/", function(req, res) {
-//	res.send("Hi There!");
-	Bulletin.getAll(function(messages) {
-		//  res.json(result);
-		res.render("board",{
+function renderBoard(res) {
+	Bulletin.getAll()
+		.then(function(messages) {
+			res.render("board",{
 			messages: messages
 		});
 	});
+}
+
+app.get("/", function(req, res) {
+	renderBoard(res);
 });
 
 app.post("/", function(req, res) {
-	Bulletin.add([req.body.title, req.body.body]).then(function(messages) {
-		res.send("saved");
-		res.json();
-		// res.render("board", {
-		// 	messages: messages
-		// });
-	});
+	Bulletin.add([req.body.title, req.body.body])
+		.then(function() {
+			renderBoard(res, "Saved " + req.body.title);
+		});
 });
+
 
 app.get("*", function (req, res) {
 	res.send('<img src="/css/images/bowie.jpg">');
