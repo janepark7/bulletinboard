@@ -25,20 +25,22 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-	if(req.body.title && req.body.body){
-		res.send('correct');
-	}else{
-		res.send('No.');
-	}
-	if (Bulletin.add([req.body.title, req.body.body])
+	if (req.body.title === "") {
+		res.redirect('/error?message=You%20Need%20Both%20Items%20To%20Post');
+		return;
+}
+	else if (req.body.body === "") {
+		res.redirect('/error?message=You%20Need%20Both%20Items%20To%20Post');
+		return;
+}
+
+	// else if (req.body.title === "" || req.body.body ==="")
+	// 	res.send("You need BOTH items to post!")
+	// );
+
+	Bulletin.add([req.body.title, req.body.body])
 		.then(function() {
 			renderBoard(res, "Saved " + req.body.title);
-		}))
-
-	}else{
-			.then(function() {
-				renderBoard(res, "Error ");
-			})
 		});
 });
 
@@ -51,10 +53,14 @@ app.get("/form", function (req, res) {
 //	insert David Bowie 404 - Oh you pretty errors!
 });
 
-app.get("*", function (req, res) {
-	res.send('<img src="/css/images/bowie.jpg">');
-//	insert David Bowie 404 - Oh you pretty errors!
+app.get("/error", function(req, res) {
+	res.render("error");
 });
+
+// app.get("*", function (req, res) {
+// 	res.send('<img src="/css/images/bowie.jpg">');
+// //	insert David Bowie 404 - Oh you pretty errors!
+// });
 
 const port = process.env.PORT || 3000;
 
