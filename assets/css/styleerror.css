@@ -4,7 +4,7 @@
 }
 
 #tomato {
-  background-image: url('/images/rottentomato.png');
+  background-image: url('/css/images/rottentomato.png');
 }
 
 body {
@@ -18,6 +18,17 @@ body {
 	color: maroon;
 }
 
+p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 p1{
-	padding
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+p2 {
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
