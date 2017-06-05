@@ -1,0 +1,23 @@
+.photo {
+	background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#tomato {
+  background-image: url('/images/rottentomato.png');
+}
+
+body {
+
+	padding-top: 38px;
+	padding-bottom: 8px;
+	font-family: "Arial Black", serif;
+	text-align: center;
+	font-size: 30px;
+	text-shadow: 2px 2px 8px silver;
+	color: maroon;
+}
+
+p1{
+	padding
+}

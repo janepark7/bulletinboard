@@ -1,0 +1,28 @@
+h1 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-family: "Book Antiqua", serif;
+	text-align: center;
+	font-size: 38px;
+	text-shadow: 2px 2px 8px silver;
+	color: white;
+}
+
+p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+}
+
+body {
+	background-image: url('images/foodwallpaper.jpg');
+	font-family: monospace;
+	font-size: 15px;
+	text-align: center;
+	color: white;
+	text-shadow: 2px 2px 8px brown;
+}
+
+table {
+
+}

@@ -50,17 +50,12 @@ app.get("/form", function (req, res) {
 		title: req.body.title,
 		body: req.body.body,
 	});
-//	insert David Bowie 404 - Oh you pretty errors!
 });
 
 app.get("/error", function(req, res) {
 	res.render("error");
 });
 
-// app.get("*", function (req, res) {
-// 	res.send('<img src="/css/images/bowie.jpg">');
-// //	insert David Bowie 404 - Oh you pretty errors!
-// });
 
 const port = process.env.PORT || 3000;
 
