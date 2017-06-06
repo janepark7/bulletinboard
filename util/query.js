@@ -1,11 +1,38 @@
 const pg = require("pg");
-const config = {
-	user: "postgres",
-	database: "bulletinboard",
-	password: "postgres123",
-	host: "localhost",
-	post: 5423,
-};
+const url = require("url");
+
+// Create the config object
+let config;
+
+if (process.env.DATABASE_URL) {
+	const params = url.parse(process.env.DATABASE_URL);
+	const auth = params.auth.split(":");
+
+	config = {
+		database: params.pathname.split('/')[1],
+		user: auth[0],
+		password: auth[1],
+		host: params.hostname,
+		port: params.port,
+		ssl: true
+	};
+}
+else {
+	config = {
+			user: "postgres",
+			database: "bulletinboard",
+			password: "postgres123",
+			host: "localhost",
+			post: 5423,
+	};
+}
+
+// Handle missing config args
+if (!config.user || !config.database) {
+	console.error("Missing database configuration!", config);
+	process.exit(1);
+}
+
 
 const pool = new pg.Pool(config);
 const bodyParser = require("body-parser");
